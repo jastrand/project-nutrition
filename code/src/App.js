@@ -4,8 +4,6 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { nutritionInfo } from './reducers/nutritionInfo'
 import { ui } from './reducers/ui'
 import { ScanBarcode } from "components/ScanBarcode";
-import { NutritionList } from 'components/NutritionList'
-import { LoadingLottie } from 'components/LoadingLottie'
 
 const reducer = combineReducers({
   nutritionInfo: nutritionInfo.reducer,
