@@ -1,34 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { ui } from './ui'
 
-export const nutritioninfo = createSlice({
-  name: 'nutritioninfo',
+export const nutritionInfo = createSlice({
+  name: 'nutritionInfo',
   initialState: {
-    items: []
+    productDetails: []
   },
-
   reducers: {
-    setNutritioninfo: (store, action) => {
-      store.items = action.payload;
+    setNutritionInfo: (store, action) => {
+      store.productDetails = action.payload; // This is json.product from API
     }
   }
 })
 
 
 export const fetchFood = (code) => {
-  console.log(`Code: ${code}`)
+  // console.log(`Code: ${code}`)
   const FOOD_URL = `https://world.openfoodfacts.org/api/v0/product/${code}.json`;
   return (dispatch) => {
+    dispatch(ui.actions.setLoading(true))
     fetch(FOOD_URL)
       .then((res) => res.json())
       .then((json) => {
         console.log(json)
-        if (json.product) {
-
-          dispatch(nutritioninfo.actions.setNutritioninfo(json))
-
-        }
+        dispatch(nutritionInfo.actions.setNutritionInfo(json))
+        dispatch(ui.actions.setLoading(false))
       })
-      ;
   }
 }
 
