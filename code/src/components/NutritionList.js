@@ -1,6 +1,6 @@
 // print data from api ; name of the product, manufacturing countries, environment stats 
 // check if the manufacturing countries include sweden
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nutritionInfo, fetchFood } from 'reducers/nutritionInfo'
 import { ScanBarcode } from './ScanBarcode'
