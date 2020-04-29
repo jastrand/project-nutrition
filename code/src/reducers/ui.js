@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+/* import { createSlice } from '@reduxjs/toolkit'
 
 export const ui = createSlice({
   name: 'ui',
@@ -10,4 +10,4 @@ export const ui = createSlice({
       store.isLoading = action.payload
     },
   },
-})
+}) */

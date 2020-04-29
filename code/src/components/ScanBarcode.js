@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { BarcodeScanner } from './BarcodeScanner'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchFood } from 'reducers/nutritionInfo'
-import { LoadingLottie } from './LoadingLottie'
+import { nutritionInfo, fetchFood } from 'reducers/nutritionInfo'
 import { NutritionList } from './NutritionList'
 
 export const ScanBarcode = () => {
   const [showScanner, setShowScanner] = useState(false)
   const dispatch = useDispatch()
-  const isLoading = useSelector((store) => store.ui.isLoading)
+
 
   return (
     <>
@@ -26,8 +25,8 @@ export const ScanBarcode = () => {
         }} />
       )}
 
-      {isLoading && <LoadingLottie />}
-      {!isLoading && !showScanner && <NutritionList />}
+      {/* {isLoading && <LoadingLottie />} */}
+      {/* {!isLoading && !showScanner && <NutritionList />} */}
 
     </>
   )

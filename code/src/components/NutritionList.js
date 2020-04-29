@@ -3,22 +3,31 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nutritionInfo, fetchFood } from 'reducers/nutritionInfo'
-import { ScanBarcode } from './ScanBarcode';
+import { ScanBarcode } from './ScanBarcode'
+import { LoadingLottie } from './LoadingLottie'
 
 
 export const NutritionList = () => {
-  // 1. Migrate this to dispatch
+
   const dispatch = useDispatch();
-  // 2. Use selector instead of state
 
-  const food = useSelector((store) => store.nutritionInfo.productDetails);
+  const food = useSelector((store) => store.nutritionInfo.productDetails)
+  const isLoading = useSelector((store) => store.nutritionInfo.isLoading)
+  console.log(isLoading)
+  /* useEffect((code) => {
+    dispatch(fetchFood(code))
+  }, [dispatch(), food]) */
 
-  /* useEffect(() => {
-    // 3. Move the fetch to the reducer &  Dispatch a thunk
-    dispatch(fetchFood());
-  }, [dispatch, food]);
- */
-  if (food.status === 1) {
+  if (!isLoading.isLoading && food.status === 0) {
+    return (
+      <ScanBarcode />
+    )
+  } else if (isLoading.isLoading) {
+    return (
+      <LoadingLottie />
+    )
+  } else if (!isLoading.isLoading && food.status === 1) {
+    console.log(isLoading)
     return (
       <>
         <h1>Product name: {food.product.product_name_sv}</h1>
