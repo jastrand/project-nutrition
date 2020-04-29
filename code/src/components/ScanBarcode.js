@@ -15,6 +15,7 @@ export const ScanBarcode = () => {
     <StartSection>
       {showScanner && (
         <BarcodeScanner
+          className="camera"
           onDetected={(code) => {
             setShowScanner(false);
             dispatch(fetchFood(code));
@@ -40,9 +41,12 @@ const StartSection = styled.section`
 `
 
 const Button = styled.button`
-  font-size: 50px;
+  font-size: 30px;
+  padding: 6px 10px;
   color: #FFD700;
   border-radius: 12px;
   background: blue;
   box-shadow: 3px 5px #FFD700;
+  margin-top: 50px;
+  text-transform: uppercase;
 `

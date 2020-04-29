@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components'
 import { BeforeScan } from './BeforeScan'
 import { ProductNotFound } from './ProductNotFound'
+import { CountryNotFound } from './CountryNotFound'
 
 export const NutritionList = () => {
 
@@ -13,11 +14,12 @@ export const NutritionList = () => {
   if (food.status === 1) {
     return (
       <Container>
-        <p>Product name: {food.product.product_name_sv}</p>
-        <p>Origin: {food.product.origins_tags}</p>
-        <p>Manufacturing: {food.product.manufacturing_places_tags}</p>
-        <p>Ingredients: {food.product.ingredients_text}</p>
-        {/* {food.product.origins_tags === sweden ? "Yay its Swedish" : "Oh no, your food is not from Sweden!"} */}
+        {food.product.origins_tags !== "sweden" && <CountryNotFound />}
+        <Title>{food.product.origins_tags === "sweden" ? "Yay it's Swedish!" : "Oh no! The origin country is either missing or your product is not from Sweden"}</Title>
+        <Text>Product name: {food.product.product_name_sv}</Text>
+        <Text>{!food.product.origins_tags ? "" : `Origin: ${food.product.origins_tags}`}</Text>
+        <Text>{!food.product.manufacturing_places_tags ? "" : `Manufacturing: ${food.product.manufacturing_places_tags}`}</Text>
+        <Text>Ingredients: {food.product.ingredients_text}</Text>
       </Container>
     );
   } else if (food.status === 0) {
@@ -32,29 +34,21 @@ export const NutritionList = () => {
 };
 
 const Container = styled.section`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 500px;
+  margin: 50px;
+  text-align: center;
+
+  @media (min-width: 900px) {
+    margin: 50px 200px;
+  }
 `;
 
-//   if (food.status === 1) {
-//     return (
-//       <div>
-//         <h1>Product name: {food.product.product_name_sv}</h1>
-//         <h1>Origin: {food.product.origins_tags}</h1>
-//       </div>
-//     )
-//   } else if (food.status === 0) { // If product was not found
-//     return (
-//       <div>
-//         <h1>Sorry, no product found!</h1>
-//         <ScanBarcode />
-//       </div>
-//     )
-//   } else {
-//     return (
-//       <ScanBarcode />
-//     )
-//   }
-// }
+const Title = styled.p`
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 40px;
+`
+
+const Text = styled.p`
+  font-size: 20px;
+  `
