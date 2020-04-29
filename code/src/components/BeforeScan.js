@@ -1,12 +1,11 @@
 import React from 'react'
 import Lottie from 'lottie-react-web'
-import animation from 'animation/sad.json'
+import animation from 'animation/barcode.json'
 
 
-export const ProductNotFound = () => {
+export const BeforeScan = () => {
   return (
     <>
-      <h2>Oh noooo! The product is not found</h2>
       <Lottie
         options={{
           animationData: animation,

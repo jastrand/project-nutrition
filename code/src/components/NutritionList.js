@@ -3,38 +3,49 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ScanBarcode } from './ScanBarcode';
-
+import { BeforeScan } from './BeforeScan'
+import { ProductNotFound } from './ProductNotFound'
 
 export const NutritionList = () => {
-  // 1. Migrate this to dispatch
-  const dispatch = useDispatch();
-  // 2. Use selector instead of state
 
   const food = useSelector((store) => store.nutritionInfo.productDetails);
 
-  /* useEffect(() => {
-    // 3. Move the fetch to the reducer &  Dispatch a thunk
-    dispatch(fetchFood());
-  }, [dispatch, food]);
- */
   if (food.status === 1) {
     return (
-      <>
-        <h1>Product name: {food.product.product_name_sv}</h1>
-        <h1>Origin: {food.product.origins_tags}</h1>
-      </>
-    )
+      <div>
+        <p>Product name: {food.product.product_name_sv}</p>
+        <p>Origin: {food.product.origins_tags}</p>
+        {/* {food.product.origins_tags === Sweden ? "Yay its Swedish" : "Not Swedish"} */}
+      </div>
+    );
   } else if (food.status === 0) {
     return (
-      <>
-        <p>Product is not found!</p>
-      </>
-    )
+      <ProductNotFound />
+    );
   } else {
     return (
-      <>
-        <ScanBarcode />
-      </>
-    )
+      <BeforeScan />
+    );
   }
-}
+};
+
+//   if (food.status === 1) {
+//     return (
+//       <div>
+//         <h1>Product name: {food.product.product_name_sv}</h1>
+//         <h1>Origin: {food.product.origins_tags}</h1>
+//       </div>
+//     )
+//   } else if (food.status === 0) { // If product was not found
+//     return (
+//       <div>
+//         <h1>Sorry, no product found!</h1>
+//         <ScanBarcode />
+//       </div>
+//     )
+//   } else {
+//     return (
+//       <ScanBarcode />
+//     )
+//   }
+// }
