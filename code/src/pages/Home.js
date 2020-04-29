@@ -3,7 +3,8 @@ import { Provider } from 'react-redux';
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { nutritionInfo } from 'reducers/nutritionInfo'
 import { ui } from 'reducers/ui'
-import { ScanBarcode } from "components/ScanBarcode";
+import { ScanBarcode } from 'components/ScanBarcode';
+import { Header } from 'components/Header'
 
 
 const reducer = combineReducers({
@@ -16,6 +17,7 @@ export const store = configureStore({ reducer })
 export const Home = () => {
   return (
     <Provider store={store}>
+      <Header />
       <ScanBarcode />
     </Provider>
   );

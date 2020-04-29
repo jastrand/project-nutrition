@@ -1,8 +1,8 @@
 // print data from api ; name of the product, manufacturing countries, environment stats 
 // check if the manufacturing countries include sweden
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { ScanBarcode } from './ScanBarcode';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components'
 import { BeforeScan } from './BeforeScan'
 import { ProductNotFound } from './ProductNotFound'
 
@@ -12,11 +12,13 @@ export const NutritionList = () => {
 
   if (food.status === 1) {
     return (
-      <div>
+      <Container>
         <p>Product name: {food.product.product_name_sv}</p>
         <p>Origin: {food.product.origins_tags}</p>
-        {/* {food.product.origins_tags === Sweden ? "Yay its Swedish" : "Not Swedish"} */}
-      </div>
+        <p>Manufacturing: {food.product.manufacturing_places_tags}</p>
+        <p>Ingredients: {food.product.ingredients_text}</p>
+        {/* {food.product.origins_tags === sweden ? "Yay its Swedish" : "Oh no, your food is not from Sweden!"} */}
+      </Container>
     );
   } else if (food.status === 0) {
     return (
@@ -28,6 +30,13 @@ export const NutritionList = () => {
     );
   }
 };
+
+const Container = styled.section`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 500px;
+`;
 
 //   if (food.status === 1) {
 //     return (

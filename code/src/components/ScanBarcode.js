@@ -25,7 +25,7 @@ export const ScanBarcode = () => {
       {!isLoading && !showScanner && <NutritionList />}
       {!showScanner && (
         <Button type="button" onClick={() => setShowScanner(true)}>
-          Show scanner
+          Scan!
         </Button>
       )}
     </StartSection>
@@ -40,8 +40,9 @@ const StartSection = styled.section`
 `
 
 const Button = styled.button`
-  font-size: 30px;
-  color: #000;
-  border-radius: 10px;
-  background: #f1f1f1;
+  font-size: 50px;
+  color: #FFD700;
+  border-radius: 12px;
+  background: blue;
+  box-shadow: 3px 5px #FFD700;
 `
