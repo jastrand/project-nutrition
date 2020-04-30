@@ -12,9 +12,6 @@ export const NutritionList = () => {
 
 
   if (food.status === 1) {
-    // const itemExist = (element) => element.includes(origins_tags || manufacturing_places_tags);
-    // const foodArray = food.product
-    // const apiExist = foodArray.some(itemExist)
     const isSwedish =
       (food.product.origins_tags && food.product.origins_tags.includes('sweden')) ||
       (food.product.manufacturing_places_tags && food.product.manufacturing_places_tags.includes('sweden'))
@@ -23,6 +20,7 @@ export const NutritionList = () => {
       <Container>
         <Title>{isSwedish ? "Yay it's Swedish!" : "Oh no! The origin country is either missing or your product is not from Sweden"}
         </Title>
+        {!isSwedish && <CountryNotFound />}
         <Text>Product name: {food.product.product_name_sv}</Text>
         <Text>Ingredients: {food.product.ingredients_text}</Text>
       </Container>
@@ -51,6 +49,7 @@ const Title = styled.p`
   font-size: 25px;
   font-weight: bold;
   margin-top: 0;
+  padding-top: 0;
   margin-bottom: 40px;
 `
 
