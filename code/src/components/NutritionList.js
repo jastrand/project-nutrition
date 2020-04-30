@@ -1,5 +1,4 @@
-// print data from api ; name of the product, manufacturing countries, environment stats 
-// check if the manufacturing countries include sweden
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components'
@@ -11,14 +10,20 @@ export const NutritionList = () => {
 
   const food = useSelector((store) => store.nutritionInfo.productDetails);
 
+
   if (food.status === 1) {
+    // const itemExist = (element) => element.includes(origins_tags || manufacturing_places_tags);
+    // const foodArray = food.product
+    // const apiExist = foodArray.some(itemExist)
+    const isSwedish =
+      (food.product.origins_tags && food.product.origins_tags.includes('sweden')) ||
+      (food.product.manufacturing_places_tags && food.product.manufacturing_places_tags.includes('sweden'))
+
     return (
       <Container>
-        {food.product.origins_tags !== "sweden" && <CountryNotFound />}
-        <Title>{food.product.origins_tags === "sweden" ? "Yay it's Swedish!" : "Oh no! The origin country is either missing or your product is not from Sweden"}</Title>
+        <Title>{isSwedish ? "Yay it's Swedish!" : "Oh no! The origin country is either missing or your product is not from Sweden"}
+        </Title>
         <Text>Product name: {food.product.product_name_sv}</Text>
-        <Text>{!food.product.origins_tags ? "" : `Origin: ${food.product.origins_tags}`}</Text>
-        <Text>{!food.product.manufacturing_places_tags ? "" : `Manufacturing: ${food.product.manufacturing_places_tags}`}</Text>
         <Text>Ingredients: {food.product.ingredients_text}</Text>
       </Container>
     );
