@@ -1,13 +1,15 @@
 # Project Nutrition
 
-Replace this readme with your own information about your project.
+This site let's you scan a food product barcode and will let you know if the product is made in Sweden or not. 
 
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+## Tech used
 
-## The problem
-
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
+- React
+- Redux
+- API
+- React Hooks
+- Thunks
 
 ## View it live
 
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+https://condescending-villani-5eeb9b.netlify.app/
